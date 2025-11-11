@@ -1,5 +1,24 @@
-import { Container, Stack, Text, Title, Image, Paper, Group, Center, Box, SimpleGrid, ThemeIcon } from '@mantine/core';
-import { IconAt, IconPhone, IconMapPin, IconSchool, IconBook, IconUsers } from '@tabler/icons-react';
+import {
+  Container,
+  Stack,
+  Text,
+  Title,
+  Image,
+  Paper,
+  Group,
+  Center,
+  Box,
+  SimpleGrid,
+  ThemeIcon,
+} from '@mantine/core';
+import {
+  IconAt,
+  IconPhone,
+  IconMapPin,
+  IconSchool,
+  IconBook,
+  IconUsers,
+} from '@tabler/icons-react';
 
 export default function HomeRoute() {
   return (
@@ -16,19 +35,19 @@ export default function HomeRoute() {
       <Container size="md" py="xl">
         <Paper shadow="xl" radius="lg" p="xl" withBorder>
           <Stack align="center" gap="xl">
-            {/* Logos */}
-            <Group justify="center" gap="xl">
+            {/* Logos - Versión Mobile Friendly */}
+            <Group justify="center" wrap="wrap">
               <Image
                 src="/assets/colegio-300x300.png"
-                h={150}
-                w={150}
+                h={{ base: 100, sm: 150 }}
+                w={{ base: 100, sm: 150 }}
                 fit="contain"
                 style={{ filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.1))' }}
               />
               <Image
                 src="/assets/jardin-300x300.png"
-                h={150}
-                w={150}
+                h={{ base: 100, sm: 150 }}
+                w={{ base: 100, sm: 150 }}
                 fit="contain"
                 style={{ filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.1))' }}
               />
@@ -60,9 +79,9 @@ export default function HomeRoute() {
                 Sobre Nuestra Institución
               </Title>
               <Text ta="center" c="dimmed" size="sm">
-                Somos una institución educativa comprometida con la excelencia académica 
-                y la formación integral de nuestros alumnos. Ofrecemos un ambiente de 
-                aprendizaje seguro, inclusivo y estimulante.
+                Somos una institución educativa comprometida con la excelencia
+                académica y la formación integral de nuestros alumnos. Ofrecemos
+                un ambiente de aprendizaje seguro, inclusivo y estimulante.
               </Text>
             </Stack>
 
@@ -84,7 +103,12 @@ export default function HomeRoute() {
 
               <Paper p="md" radius="md" withBorder>
                 <Stack align="center" gap="xs">
-                  <ThemeIcon size={50} radius="xl" variant="light" color="violet">
+                  <ThemeIcon
+                    size={50}
+                    radius="xl"
+                    variant="light"
+                    color="violet"
+                  >
                     <IconBook size={28} />
                   </ThemeIcon>
                   <Text fw={600} size="sm" ta="center">
@@ -98,7 +122,12 @@ export default function HomeRoute() {
 
               <Paper p="md" radius="md" withBorder>
                 <Stack align="center" gap="xs">
-                  <ThemeIcon size={50} radius="xl" variant="light" color="grape">
+                  <ThemeIcon
+                    size={50}
+                    radius="xl"
+                    variant="light"
+                    color="grape"
+                  >
                     <IconUsers size={28} />
                   </ThemeIcon>
                   <Text fw={600} size="sm" ta="center">
@@ -213,7 +242,8 @@ export default function HomeRoute() {
 
             {/* Footer */}
             <Text size="xs" c="dimmed" ta="center" mt="md">
-              © {new Date().getFullYear()} Colegio San Miguel Arcángel - Jardín La Alpina Verde
+              © {new Date().getFullYear()} Colegio San Miguel Arcángel - Jardín
+              La Alpina Verde
             </Text>
           </Stack>
         </Paper>
