@@ -1,5 +1,5 @@
-import { Container, Stack, Text, Title, Image, Paper, Group, Center, Box } from '@mantine/core';
-import { IconAt, IconPhone, IconMapPin } from '@tabler/icons-react';
+import { Container, Stack, Text, Title, Image, Paper, Group, Center, Box, SimpleGrid, ThemeIcon } from '@mantine/core';
+import { IconAt, IconPhone, IconMapPin, IconSchool, IconBook, IconUsers } from '@tabler/icons-react';
 
 export default function HomeRoute() {
   return (
@@ -10,6 +10,7 @@ export default function HomeRoute() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        padding: '2rem 0',
       }}
     >
       <Container size="md" py="xl">
@@ -53,8 +54,69 @@ export default function HomeRoute() {
               </Text>
             </Paper>
 
+            {/* Sobre la Institución */}
+            <Stack gap="md" w="100%">
+              <Title order={3} size="h4" ta="center" mt="md">
+                Sobre Nuestra Institución
+              </Title>
+              <Text ta="center" c="dimmed" size="sm">
+                Somos una institución educativa comprometida con la excelencia académica 
+                y la formación integral de nuestros alumnos. Ofrecemos un ambiente de 
+                aprendizaje seguro, inclusivo y estimulante.
+              </Text>
+            </Stack>
+
+            {/* Niveles Educativos */}
+            <SimpleGrid cols={{ base: 1, sm: 3 }} spacing="md" w="100%">
+              <Paper p="md" radius="md" withBorder>
+                <Stack align="center" gap="xs">
+                  <ThemeIcon size={50} radius="xl" variant="light" color="blue">
+                    <IconSchool size={28} />
+                  </ThemeIcon>
+                  <Text fw={600} size="sm" ta="center">
+                    Nivel Inicial
+                  </Text>
+                  <Text size="xs" c="dimmed" ta="center">
+                    Jardín La Alpina Verde
+                  </Text>
+                </Stack>
+              </Paper>
+
+              <Paper p="md" radius="md" withBorder>
+                <Stack align="center" gap="xs">
+                  <ThemeIcon size={50} radius="xl" variant="light" color="violet">
+                    <IconBook size={28} />
+                  </ThemeIcon>
+                  <Text fw={600} size="sm" ta="center">
+                    Nivel Primario
+                  </Text>
+                  <Text size="xs" c="dimmed" ta="center">
+                    Educación integral
+                  </Text>
+                </Stack>
+              </Paper>
+
+              <Paper p="md" radius="md" withBorder>
+                <Stack align="center" gap="xs">
+                  <ThemeIcon size={50} radius="xl" variant="light" color="grape">
+                    <IconUsers size={28} />
+                  </ThemeIcon>
+                  <Text fw={600} size="sm" ta="center">
+                    Nivel Secundario
+                  </Text>
+                  <Text size="xs" c="dimmed" ta="center">
+                    Formación de calidad
+                  </Text>
+                </Stack>
+              </Paper>
+            </SimpleGrid>
+
             {/* Información de contacto */}
             <Stack gap="md" w="100%" mt="md">
+              <Title order={4} size="h5" ta="center">
+                Contacto
+              </Title>
+
               <Paper p="md" radius="md" withBorder>
                 <Group gap="md">
                   <Center
@@ -148,6 +210,11 @@ export default function HomeRoute() {
                 </Group>
               </Paper>
             </Stack>
+
+            {/* Footer */}
+            <Text size="xs" c="dimmed" ta="center" mt="md">
+              © {new Date().getFullYear()} Colegio San Miguel Arcángel - Jardín La Alpina Verde
+            </Text>
           </Stack>
         </Paper>
       </Container>
