@@ -1,16 +1,156 @@
-import { Button, Container, Text, Title } from '@mantine/core';
-import { useState } from 'react';
+import { Container, Stack, Text, Title, Image, Paper, Group, Center, Box } from '@mantine/core';
+import { IconAt, IconPhone, IconMapPin } from '@tabler/icons-react';
 
 export default function HomeRoute() {
-  const [counter, setCounter] = useState(0);
-  const updateCounter = () => setCounter((prev) => prev + 1);
   return (
-    <Container ta="center" mt="6rem">
-      <Title my="xs">El Gordo React™</Title>
-      <Text my="md" c="dimmed">
-        La mejor template del universo.
-      </Text>
-      <Button onClick={updateCounter}>Clicks: {counter}</Button>
-    </Container>
+    <Box
+      style={{
+        minHeight: '100vh',
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <Container size="md" py="xl">
+        <Paper shadow="xl" radius="lg" p="xl" withBorder>
+          <Stack align="center" gap="xl">
+            {/* Logos */}
+            <Group justify="center" gap="xl">
+              <Image
+                src="/assets/colegio-300x300.png"
+                h={150}
+                w={150}
+                fit="contain"
+                style={{ filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.1))' }}
+              />
+              <Image
+                src="/assets/jardin-300x300.png"
+                h={150}
+                w={150}
+                fit="contain"
+                style={{ filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.1))' }}
+              />
+            </Group>
+
+            {/* Títulos */}
+            <Stack align="center" gap="xs">
+              <Title order={1} size="h2" ta="center" fw={700}>
+                Colegio San Miguel Arcángel
+              </Title>
+              <Title order={2} size="h3" ta="center" fw={600} c="dimmed">
+                Jardín La Alpina Verde
+              </Title>
+            </Stack>
+
+            {/* Mensaje de construcción */}
+            <Paper bg="blue.0" p="md" radius="md" w="100%">
+              <Text size="lg" ta="center" fw={500} c="blue.7">
+                🚧 Sitio en construcción 🚧
+              </Text>
+              <Text size="sm" ta="center" c="dimmed" mt="xs">
+                Estamos trabajando para ofrecerte una mejor experiencia
+              </Text>
+            </Paper>
+
+            {/* Información de contacto */}
+            <Stack gap="md" w="100%" mt="md">
+              <Paper p="md" radius="md" withBorder>
+                <Group gap="md">
+                  <Center
+                    style={{
+                      width: 40,
+                      height: 40,
+                      borderRadius: '50%',
+                      backgroundColor: 'var(--mantine-color-blue-1)',
+                    }}
+                  >
+                    <IconPhone size={20} color="var(--mantine-color-blue-7)" />
+                  </Center>
+                  <Box style={{ flex: 1 }}>
+                    <Text size="xs" c="dimmed" fw={500}>
+                      Teléfono
+                    </Text>
+                    <Text
+                      component="a"
+                      href="tel:44555400"
+                      size="md"
+                      fw={600}
+                      style={{ textDecoration: 'none', color: 'inherit' }}
+                    >
+                      4455-5400
+                    </Text>
+                  </Box>
+                </Group>
+              </Paper>
+
+              <Paper p="md" radius="md" withBorder>
+                <Group gap="md">
+                  <Center
+                    style={{
+                      width: 40,
+                      height: 40,
+                      borderRadius: '50%',
+                      backgroundColor: 'var(--mantine-color-blue-1)',
+                    }}
+                  >
+                    <IconAt size={20} color="var(--mantine-color-blue-7)" />
+                  </Center>
+                  <Box style={{ flex: 1 }}>
+                    <Text size="xs" c="dimmed" fw={500}>
+                      Email
+                    </Text>
+                    <Text
+                      component="a"
+                      href="mailto:administracion@colegiosanmiguelarcangel.edu.ar"
+                      size="md"
+                      fw={600}
+                      style={{
+                        textDecoration: 'none',
+                        color: 'inherit',
+                        wordBreak: 'break-word',
+                      }}
+                    >
+                      administracion@colegiosanmiguelarcangel.edu.ar
+                    </Text>
+                  </Box>
+                </Group>
+              </Paper>
+
+              <Paper p="md" radius="md" withBorder>
+                <Group gap="md" align="flex-start">
+                  <Center
+                    style={{
+                      width: 40,
+                      height: 40,
+                      borderRadius: '50%',
+                      backgroundColor: 'var(--mantine-color-blue-1)',
+                    }}
+                  >
+                    <IconMapPin size={20} color="var(--mantine-color-blue-7)" />
+                  </Center>
+                  <Box style={{ flex: 1 }}>
+                    <Text size="xs" c="dimmed" fw={500}>
+                      Dirección
+                    </Text>
+                    <Text
+                      component="a"
+                      href="https://maps.app.goo.gl/VpVP42KJgLjGmLuJA"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      size="md"
+                      fw={600}
+                      style={{ textDecoration: 'none', color: 'inherit' }}
+                    >
+                      San José 5290, San Miguel, Buenos Aires
+                    </Text>
+                  </Box>
+                </Group>
+              </Paper>
+            </Stack>
+          </Stack>
+        </Paper>
+      </Container>
+    </Box>
   );
 }
