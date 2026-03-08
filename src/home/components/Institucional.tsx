@@ -28,9 +28,9 @@ export function Institucional() {
             </FadeIn>
             <FadeIn delay={0.12}>
               <Title order={2} fz={{ base: 30, md: 36 }} lh={1.2} mb="lg">
-                Un colegio que nació
+                Más de 30 años
                 <br />
-                <Text span c="brand" inherit>del barrio, para el barrio</Text>
+                <Text span c="brand" inherit>educando con compromiso y dedicación</Text>
               </Title>
             </FadeIn>
             <FadeIn delay={0.24}>

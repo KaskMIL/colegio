@@ -4,7 +4,7 @@ import { FadeIn } from '../../components/FadeIn';
 import classes from './ValoresStrip.module.css';
 
 const VALORES = [
-  { icon: '❤️', title: 'Calidez', desc: 'Conocemos a cada alumno por su nombre. Acá no sos un número.' },
+  { icon: '❤️', title: 'Calidez', desc: 'Enseñamos con amor y acompañamos a cada chico en su camino.' },
   { icon: '📖', title: 'Educación', desc: 'Formación sólida desde el jardín hasta terminar la secundaria.' },
   { icon: '🤝', title: 'Comunidad', desc: 'Familias, docentes y alumnos construyendo juntos desde hace 30 años.' },
   { icon: '🌱', title: 'Crecimiento', desc: 'Inglés, computación y valores para que tu hijo salga preparado.' },

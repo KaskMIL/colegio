@@ -31,18 +31,16 @@ export function Navbar() {
             {/* Dual logos + brand name */}
             <a href="#" className={classes.logos}>
               {/* Placeholder divs — reemplazar con <img> cuando tengas los logos */}
-              <Box
+              <img
                 className={classes.logoImg}
                 style={{ background: 'var(--mantine-color-brand-6)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 10, fontWeight: 700 }}
-              >
-                AV
-              </Box>
-              <Box
+                src='/assets/jardin-300x300.png'
+              />
+              <img
                 className={classes.logoImg}
                 style={{ background: 'var(--mantine-color-brand-6)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 9, fontWeight: 700 }}
-              >
-                SMA
-              </Box>
+                src='/assets/colegio-300x300.png'
+              />
               <div className={classes.brandText}>
                 <div className={classes.brandName} style={{ color: textColor }}>
                   La Alpina Verde · San Miguel Arcángel
