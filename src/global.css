@@ -1,0 +1,22 @@
+/* Tokens que no van en el theme de Mantine */
+:root {
+  --color-warm-white: #fefdfb;
+  --color-cream: #faf8f5;
+  --color-sand: #f3ede4;
+  --color-warm-gray: #6b6258;
+  --color-dark-text: #2a2520;
+  --color-light-text: #8c857b;
+  --color-border: #e8e1d6;
+  --color-dark-bg: #1c1f1a;
+  --color-amber: #d4882b;
+  --color-amber-light: #e9a53e;
+  --color-green-soft: #e6f4ec;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-warm-white);
+}

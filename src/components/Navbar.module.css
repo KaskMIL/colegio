@@ -1,0 +1,110 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: all 0.35s ease;
+  padding: 16px 0;
+}
+
+.nav[data-scrolled] {
+  background: rgba(250, 248, 245, 0.97);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--color-border);
+  padding: 10px 0;
+}
+
+/* Logo area */
+.logos {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logoImg {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  object-fit: contain;
+  background: white;
+  padding: 2px;
+}
+
+.brandText {
+  line-height: 1.15;
+}
+
+.brandName {
+  font-family: var(--mantine-heading-font-family);
+  font-size: 14px;
+  font-weight: 700;
+  transition: color 0.35s;
+}
+
+.brandSub {
+  font-size: 10.5px;
+  transition: color 0.35s;
+}
+
+/* Links */
+.desktopLinks {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.link {
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.25s;
+  padding: 4px 0;
+}
+
+.link:hover {
+  color: var(--mantine-color-brand-6);
+}
+
+.ctaBtn {
+  font-size: var(--mantine-font-size-xs);
+  font-weight: 600;
+}
+
+/* Mobile */
+.burger {
+  display: none;
+}
+
+.mobileOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(250, 248, 245, 0.98);
+  backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+}
+
+.mobileLink {
+  font-family: var(--mantine-heading-font-family);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-dark-text);
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .desktopLinks {
+    display: none;
+  }
+
+  .burger {
+    display: block;
+  }
+}

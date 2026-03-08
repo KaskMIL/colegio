@@ -1,0 +1,35 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(140deg, var(--mantine-color-brand-6) 0%, #01522c 100%);
+}
+
+.section::after {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: rgba(212, 136, 43, 0.08);
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.heading {
+  color: #fff;
+}
+
+.accent {
+  color: var(--color-amber-light);
+  font-style: italic;
+}

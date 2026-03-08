@@ -1,0 +1,20 @@
+src/
+├── components/          ← globales, reutilizables en cualquier página
+│   ├── FadeIn.tsx
+│   ├── Footer.tsx
+│   ├── Navbar.tsx
+│   ├── Section.tsx
+│   └── SectionLabel.tsx
+├── home/
+│   ├── home-route.tsx   ← compone las secciones, ~25 líneas
+│   └── components/      ← específicos del Home
+│       ├── Hero.tsx
+│       ├── ValoresStrip.tsx
+│       ├── Institucional.tsx
+│       ├── Niveles.tsx
+│       ├── Noticias.tsx
+│       └── CTASection.tsx
+├── hooks/
+│   └── use-in-view.ts
+├── lib/
+│   └── theme-tokens.ts  ← colores y fonts centralizados

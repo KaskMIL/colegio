@@ -1,0 +1,21 @@
+.label {
+  font-size: var(--mantine-font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  color: var(--mantine-color-brand-6);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.label[data-center] {
+  justify-content: center;
+}
+
+.line {
+  width: 24px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--mantine-color-brand-6);
+}
