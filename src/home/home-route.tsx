@@ -9,6 +9,7 @@ import { Institucional } from './components/Institucional';
 import { Niveles } from './components/Niveles';
 import { Noticias } from './components/Noticias';
 import { ValoresStrip } from './components/ValoresStrip';
+import { ContactSection } from './components/ContactSection';
 
 export default function HomeRoute() {
   return (
@@ -20,6 +21,7 @@ export default function HomeRoute() {
       <Niveles />
       <Noticias />
       <CTASection />
+      <ContactSection />
       <Footer />
     </Box>
   );

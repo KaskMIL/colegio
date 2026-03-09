@@ -33,12 +33,12 @@ export function Navbar() {
               {/* Placeholder divs — reemplazar con <img> cuando tengas los logos */}
               <img
                 className={classes.logoImg}
-                style={{ background: 'var(--mantine-color-brand-6)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 10, fontWeight: 700 }}
+                // style={{ background: 'var(--mantine-color-brand-6)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 10, fontWeight: 700 }}
                 src='/assets/jardin-300x300.png'
               />
               <img
                 className={classes.logoImg}
-                style={{ background: 'var(--mantine-color-brand-6)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 9, fontWeight: 700 }}
+                // style={{ background: 'var(--mantine-color-brand-6)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 9, fontWeight: 700 }}
                 src='/assets/colegio-300x300.png'
               />
               <div className={classes.brandText}>

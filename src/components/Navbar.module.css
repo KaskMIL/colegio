@@ -25,11 +25,11 @@
 }
 
 .logoImg {
-  width: 36px;
-  height: 36px;
+  width: 64px;
+  height: 64px;
   border-radius: 8px;
   object-fit: contain;
-  background: white;
+  background: var(--mantine-color-gray-4);
   padding: 2px;
 }
 
@@ -39,20 +39,20 @@
 
 .brandName {
   font-family: var(--mantine-heading-font-family);
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 700;
   transition: color 0.35s;
 }
 
 .brandSub {
-  font-size: 10.5px;
+  font-size: 14px;
   transition: color 0.35s;
 }
 
 /* Links */
 .desktopLinks {
   display: flex;
-  gap: 24px;
+  gap: 16px;
   align-items: center;
 }
 

@@ -3,6 +3,10 @@ import { createBrowserRouter } from 'react-router';
 export const router = createBrowserRouter([
   {
     path: '/',
+    lazy: lazyComponent(import('./under-construction/under-construction-route')),
+  },
+  {
+    path: '/site',
     lazy: lazyComponent(import('./home/home-route')),
   },
 ]);

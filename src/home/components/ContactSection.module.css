@@ -1,0 +1,72 @@
+.section {
+  background: var(--color-cream);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* Map */
+.mapWrapper {
+  border-radius: var(--mantine-radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  height: 100%;
+  min-height: 460px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mapIframe {
+  width: 100%;
+  flex: 1;
+  min-height: 320px;
+  border: none;
+  display: block;
+}
+
+.mapInfo {
+  background: #fff;
+  padding: 20px 24px;
+  border-top: 1px solid var(--color-border);
+}
+
+.mapLink {
+  color: var(--mantine-color-brand-6);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: var(--mantine-font-size-sm);
+  transition: opacity 0.2s;
+}
+
+.mapLink:hover {
+  opacity: 0.8;
+}
+
+/* Form card */
+.formCard {
+  background: #fff;
+  border-radius: var(--mantine-radius-lg);
+  padding: 36px 32px;
+  border: 1px solid var(--color-border);
+}
+
+.successMessage {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.successIcon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
