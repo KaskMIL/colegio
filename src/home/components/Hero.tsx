@@ -1,38 +1,22 @@
 import { Carousel } from '@mantine/carousel';
-import { Box, Button, Container, Group, Text, Title } from '@mantine/core';
+import { Box, Button, Container, Group, Loader, Text, Title } from '@mantine/core';
 
 import { FadeIn } from '../../components/FadeIn';
+import { useHeroSlides } from '../../hooks/use-payload';
+import { mediaUrl } from '../../lib/payload';
 import classes from './Hero.module.css';
 
-// TODO: reemplazar con imágenes reales
-const SLIDES = [
-  {
-    title: 'Feria de Ciencias 2025',
-    subtitle: 'Nuestros alumnos presentando sus proyectos',
-    image: null, // '/images/feria.jpg'
-    placeholder: '🔬',
-  },
-  {
-    title: 'Acto del Día de la Diversidad',
-    subtitle: 'Toda la comunidad celebrando junta',
-    image: null,
-    placeholder: '🎭',
-  },
-  {
-    title: 'Jardín La Alpina Verde',
-    subtitle: 'Los más chiquitos aprendiendo jugando',
-    image: null,
-    placeholder: '🎨',
-  },
-  {
-    title: 'Actos patrios',
-    subtitle: 'Celebrando nuestra identidad',
-    image: null,
-    placeholder: '🇦🇷',
-  },
+const FALLBACK_SLIDES = [
+  { id: '1', title: 'Feria de Ciencias 2025', subtitle: 'Nuestros alumnos presentando sus proyectos', placeholder: '🔬' },
+  { id: '2', title: 'Acto del Día de la Diversidad', subtitle: 'Toda la comunidad celebrando junta', placeholder: '🎭' },
+  { id: '3', title: 'Jardín La Alpina Verde', subtitle: 'Los más chiquitos aprendiendo jugando', placeholder: '🎨' },
+  { id: '4', title: 'Actos patrios', subtitle: 'Celebrando nuestra identidad', placeholder: '🇦🇷' },
 ];
 
 export function Hero() {
+  const { data: slides, isLoading } = useHeroSlides();
+  const hasPayloadSlides = slides && slides.length > 0;
+
   return (
     <section className={classes.hero}>
       <div className={classes.dotPattern} />
@@ -65,31 +49,10 @@ export function Hero() {
 
             <FadeIn delay={0.48}>
               <Group mt="xl" gap="sm">
-                <Button
-                  component="a"
-                  href="#contacto"
-                  size="lg"
-                  color="amber"
-                  radius="md"
-                  styles={{
-                    root: {
-                      boxShadow: '0 4px 20px rgba(212,136,43,0.3)',
-                      '&:hover': {
-                        boxShadow: '0 8px 28px rgba(212,136,43,0.4)',
-                      },
-                    },
-                  }}
-                >
+                <Button component="a" href="#contacto" size="lg" color="amber" radius="md">
                   Quiero inscribir a mi hijo
                 </Button>
-                <Button
-                  component="a"
-                  href="#niveles"
-                  size="lg"
-                  variant="outline"
-                  color="gray.0"
-                  radius="md"
-                >
+                <Button component="a" href="#niveles" size="lg" variant="outline" color="gray.0" radius="md">
                   Conocé los niveles →
                 </Button>
               </Group>
@@ -99,57 +62,67 @@ export function Hero() {
           {/* Right — Carousel */}
           <FadeIn delay={0.25} direction="left">
             <Box className={classes.carouselWrapper}>
-              <Carousel
-                withIndicators
-                loop
-                emblaOptions={{ align: 'start' }}
-                styles={{
-                  indicator: {
-                    background: 'rgba(255,255,255,0.4)',
-                    '&[data-active]': { background: '#fff' },
-                  },
-                  control: {
-                    background: 'rgba(255,255,255,0.15)',
-                    border: '1px solid rgba(255,255,255,0.2)',
-                    color: '#fff',
-                    backdropFilter: 'blur(8px)',
-                    '&:hover': { background: 'rgba(255,255,255,0.25)' },
-                  },
-                }}
-              >
-                {SLIDES.map((slide) => (
-                  <Carousel.Slide key={slide.title}>
-                    <div className={classes.slide}>
-                      {slide.image ? (
-                        <img src={slide.image} alt={slide.title} className={classes.slideImage} />
-                      ) : (
-                        <div className={classes.slidePlaceholder}>
-                          <Text fz={64} opacity={0.35}>
-                            {slide.placeholder}
-                          </Text>
-                          <Text fz="sm" c="rgba(255,255,255,0.35)" mt="xs">
-                            Foto del evento
-                          </Text>
-                        </div>
-                      )}
-                      <div className={classes.slideOverlay}>
-                        <Text className={classes.slideTitle} fz="lg">
-                          {slide.title}
-                        </Text>
-                        <Text className={classes.slideSubtitle} fz="sm">
-                          {slide.subtitle}
-                        </Text>
-                      </div>
-                    </div>
-                  </Carousel.Slide>
-                ))}
-              </Carousel>
+              {isLoading ? (
+                <Box className={classes.slide} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Loader color="white" />
+                </Box>
+              ) : (
+                <Carousel
+                  withIndicators
+                  emblaOptions={{ align: 'start', loop: true }}
+                  styles={{
+                    indicator: {
+                      background: 'rgba(255,255,255,0.4)',
+                      '&[data-active]': { background: '#fff' },
+                    },
+                    control: {
+                      background: 'rgba(255,255,255,0.15)',
+                      border: '1px solid rgba(255,255,255,0.2)',
+                      color: '#fff',
+                      backdropFilter: 'blur(8px)',
+                      '&:hover': { background: 'rgba(255,255,255,0.25)' },
+                    },
+                  }}
+                >
+                  {hasPayloadSlides
+                    ? slides.map((slide) => (
+                        <Carousel.Slide key={slide.id}>
+                          <div className={classes.slide}>
+                            <img
+                              src={mediaUrl(slide.image?.url) ?? ''}
+                              alt={slide.title}
+                              className={classes.slideImage}
+                            />
+                            <div className={classes.slideOverlay}>
+                              <Text className={classes.slideTitle} fz="lg">{slide.title}</Text>
+                              {slide.subtitle && (
+                                <Text className={classes.slideSubtitle} fz="sm">{slide.subtitle}</Text>
+                              )}
+                            </div>
+                          </div>
+                        </Carousel.Slide>
+                      ))
+                    : FALLBACK_SLIDES.map((slide) => (
+                        <Carousel.Slide key={slide.id}>
+                          <div className={classes.slide}>
+                            <div className={classes.slidePlaceholder}>
+                              <Text fz={64} opacity={0.35}>{slide.placeholder}</Text>
+                              <Text fz="sm" c="rgba(255,255,255,0.35)" mt="xs">Foto del evento</Text>
+                            </div>
+                            <div className={classes.slideOverlay}>
+                              <Text className={classes.slideTitle} fz="lg">{slide.title}</Text>
+                              <Text className={classes.slideSubtitle} fz="sm">{slide.subtitle}</Text>
+                            </div>
+                          </div>
+                        </Carousel.Slide>
+                      ))}
+                </Carousel>
+              )}
             </Box>
           </FadeIn>
         </div>
       </Container>
 
-      {/* Scroll hint */}
       <div className={classes.scrollHint}>
         <span className={classes.scrollText}>Descubrí más</span>
         <div className={classes.scrollMouse}>

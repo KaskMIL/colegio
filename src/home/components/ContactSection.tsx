@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   Container,
@@ -11,10 +12,10 @@ import {
   Title,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { useState } from 'react';
 
 import { FadeIn } from '../../components/FadeIn';
 import { SectionLabel } from '../../components/SectionLabel';
+import { useSubmitContact } from '../../hooks/use-payload';
 import classes from './ContactSection.module.css';
 
 interface ContactFormValues {
@@ -25,15 +26,14 @@ interface ContactFormValues {
   mensaje: string;
 }
 
-// Google Maps embed URL para San José 5396, San Miguel, Buenos Aires
 const MAPS_EMBED_URL =
-  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.9613472830265!2d-58.74058352421187!3d-34.57984457296298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bc961ff092702d%3A0xc1b22c22b587702e!2sSan%20Miguel%20Arcangel%20Colegio!5e0!3m2!1ses-419!2sar!4v1773012470803!5m2!1ses-419!2sar';
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.5!2d-58.7108!3d-34.5425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sSan+Jos%C3%A9+5396%2C+San+Miguel%2C+Buenos+Aires!5e0!3m2!1ses-419!2sar!4v1700000000000!5m2!1ses-419!2sar';
 
 const GOOGLE_MAPS_LINK =
-  'https://maps.app.goo.gl/NqgzRd83nbPgAndR9';
+  'https://www.google.com/maps/search/San+Jos%C3%A9+5396,+San+Miguel,+Buenos+Aires';
 
 export function ContactSection() {
-  const [submitted, setSubmitted] = useState(false);
+  const submitContact = useSubmitContact();
 
   const form = useForm<ContactFormValues>({
     initialValues: {
@@ -45,32 +45,24 @@ export function ContactSection() {
     },
     validate: {
       nombre: (v) => (v.trim().length < 2 ? 'Ingresá tu nombre' : null),
-      email: (v) =>
-        /^\S+@\S+\.\S+$/.test(v) ? null : 'Ingresá un email válido',
-      telefono: (v) =>
-        v.trim().length < 6 ? 'Ingresá un teléfono de contacto' : null,
+      email: (v) => (/^\S+@\S+\.\S+$/.test(v) ? null : 'Ingresá un email válido'),
+      telefono: (v) => (v.trim().length < 6 ? 'Ingresá un teléfono de contacto' : null),
       nivel: (v) => (v ? null : 'Seleccioná un nivel'),
-      mensaje: (v) =>
-        v.trim().length < 10
-          ? 'Contanos un poco más (mínimo 10 caracteres)'
-          : null,
+      mensaje: (v) => (v.trim().length < 10 ? 'Contanos un poco más (mínimo 10 caracteres)' : null),
     },
   });
 
   const handleSubmit = (values: ContactFormValues) => {
-    // TODO: conectar con backend / Payload CMS
-    console.log('Formulario enviado:', values);
-    setSubmitted(true);
+    submitContact.mutate(values);
+  };
+
+  const handleReset = () => {
+    submitContact.reset();
+    form.reset();
   };
 
   return (
-    <Box
-      component="section"
-      id="contacto"
-      className={classes.section}
-      py={100}
-      px="md"
-    >
+    <Box component="section" id="contacto" className={classes.section} py={100} px="md">
       <Container size={1120}>
         <FadeIn>
           <Box mb={48}>
@@ -85,26 +77,27 @@ export function ContactSection() {
           {/* Formulario */}
           <FadeIn delay={0.1}>
             <div className={classes.formCard}>
-              {submitted ? (
+              {submitContact.isSuccess ? (
                 <div className={classes.successMessage}>
                   <div className={classes.successIcon}>✅</div>
-                  <Title order={3} mb="xs">
-                    ¡Mensaje enviado!
-                  </Title>
+                  <Title order={3} mb="xs">¡Mensaje enviado!</Title>
                   <Text c="var(--color-warm-gray)" mb="lg">
                     Nos vamos a comunicar con vos a la brevedad.
                   </Text>
-                  <Button
-                    variant="light"
-                    color="brand"
-                    onClick={() => setSubmitted(false)}
-                  >
+                  <Button variant="light" color="brand" onClick={handleReset}>
                     Enviar otro mensaje
                   </Button>
                 </div>
               ) : (
                 <form onSubmit={form.onSubmit(handleSubmit)}>
                   <Stack gap="md">
+                    {submitContact.isError && (
+                      <Alert color="red" title="Error al enviar">
+                        Hubo un problema enviando tu mensaje. Por favor intentá de nuevo o
+                        contactanos por teléfono al 4455-5400.
+                      </Alert>
+                    )}
+
                     <TextInput
                       label="Nombre completo"
                       placeholder="Tu nombre y apellido"
@@ -132,14 +125,11 @@ export function ContactSection() {
                       placeholder="Seleccioná un nivel"
                       withAsterisk
                       data={[
-                        {
-                          value: 'jardin',
-                          label: 'Jardín de Infantes',
-                        },
+                        { value: 'jardin', label: 'Jardín de Infantes (La Alpina Verde)' },
                         { value: 'primaria', label: 'Nivel Primario' },
                         { value: 'secundaria', label: 'Nivel Secundario' },
                         { value: 'varios', label: 'Más de un nivel' },
-                        // { value: 'otro', label: 'Otro / Consulta general' },
+                        { value: 'otro', label: 'Otro / Consulta general' },
                       ]}
                       {...form.getInputProps('nivel')}
                     />
@@ -159,6 +149,7 @@ export function ContactSection() {
                       size="md"
                       radius="md"
                       mt="xs"
+                      loading={submitContact.isPending}
                     >
                       Enviar mensaje
                     </Button>
@@ -180,27 +171,14 @@ export function ContactSection() {
                 allowFullScreen
               />
               <div className={classes.mapInfo}>
-                <Text fw={600} mb={4}>
-                  Colegio San Miguel Arcángel
-                </Text>
-                <Text fw={600} mb={4}>
-                  Jardín de Infantes La Alpina Verde
-                </Text>
-                <Text fz="sm" c="var(--color-warm-gray)" mb="xs">
-                  San José 5396, San Miguel, Buenos Aires
-                </Text>
+                <Text fw={600} mb={4}>Colegio San Miguel Arcángel</Text>
+                <Text fz="sm" c="var(--color-warm-gray)" mb={4}>Jardín de Infantes La Alpina Verde</Text>
+                <Text fz="sm" c="var(--color-warm-gray)" mb="xs">San José 5396, San Miguel, Buenos Aires</Text>
                 <Group gap="lg">
-                  <a
-                    href={GOOGLE_MAPS_LINK}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={classes.mapLink}
-                  >
+                  <a href={GOOGLE_MAPS_LINK} target="_blank" rel="noopener noreferrer" className={classes.mapLink}>
                     Cómo llegar →
                   </a>
-                  <a href="tel:+541144555400" className={classes.mapLink}>
-                    📞 4455-5400
-                  </a>
+                  <a href="tel:+541144555400" className={classes.mapLink}>📞 4455-5400</a>
                 </Group>
               </div>
             </div>
