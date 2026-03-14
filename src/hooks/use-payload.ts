@@ -61,6 +61,7 @@ export function useHeroSlides() {
       }),
     select: (data) => data.docs,
     staleTime: 1000 * 60 * 5, // 5 min
+    retry: 0,
   });
 }
 
