@@ -1,8 +1,8 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 
-import { createPayload, fetchPayload } from '../lib/payload';
+import { createPayload, fetchPayload, fetchPayloadById } from '../lib/payload';
 
-// ─── Types (simplificados, Payload genera los completos) ──
+// ─── Types ───────────────────────────────────────────────
 
 export interface PayloadMedia {
   id: string;
@@ -29,7 +29,10 @@ export interface Noticia {
   excerpt: string;
   content?: unknown;
   image?: PayloadMedia;
+  author?: string;
   published: boolean;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface GalleryImage {
@@ -60,8 +63,7 @@ export function useHeroSlides() {
         limit: '10',
       }),
     select: (data) => data.docs,
-    staleTime: 1000 * 60 * 5, // 5 min
-    retry: 0,
+    staleTime: 1000 * 60 * 5,
   });
 }
 
@@ -75,6 +77,29 @@ export function useNoticias(limit = 3) {
         limit: String(limit),
       }),
     select: (data) => data.docs,
+    staleTime: 1000 * 60 * 5,
+  });
+}
+
+export function useAllNoticias() {
+  return useQuery({
+    queryKey: ['noticias', 'all'],
+    queryFn: () =>
+      fetchPayload<Noticia>('noticias', {
+        'where[published][equals]': 'true',
+        sort: '-date',
+        limit: '50',
+      }),
+    select: (data) => data.docs,
+    staleTime: 1000 * 60 * 5,
+  });
+}
+
+export function useNoticia(id: string) {
+  return useQuery({
+    queryKey: ['noticia', id],
+    queryFn: () => fetchPayloadById<Noticia>('noticias', id),
+    enabled: !!id,
     staleTime: 1000 * 60 * 5,
   });
 }

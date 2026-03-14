@@ -11,10 +11,10 @@ interface PayloadResponse<T> {
 }
 
 export async function fetchPayload<T>(
-  collection: string,
+  path: string,
   params?: Record<string, string>,
 ): Promise<PayloadResponse<T>> {
-  const url = new URL(`/api/${collection}`, API_URL);
+  const url = new URL(`/api/${path}`, API_URL);
 
   if (params) {
     Object.entries(params).forEach(([key, value]) => {
@@ -25,7 +25,22 @@ export async function fetchPayload<T>(
   const res = await fetch(url.toString());
 
   if (!res.ok) {
-    throw new Error(`Error fetching ${collection}: ${res.status}`);
+    throw new Error(`Error fetching ${path}: ${res.status}`);
+  }
+
+  return res.json();
+}
+
+export async function fetchPayloadById<T>(
+  collection: string,
+  id: string,
+): Promise<T> {
+  const url = new URL(`/api/${collection}/${id}`, API_URL);
+
+  const res = await fetch(url.toString());
+
+  if (!res.ok) {
+    throw new Error(`Error fetching ${collection}/${id}: ${res.status}`);
   }
 
   return res.json();
@@ -51,7 +66,6 @@ export async function createPayload<T>(
   return res.json();
 }
 
-/** Construye la URL completa de un media upload de Payload */
 export function mediaUrl(path: string | null | undefined): string | null {
   if (!path) return null;
   if (path.startsWith('http')) return path;

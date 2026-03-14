@@ -4,10 +4,10 @@ import { useDisclosure, useWindowScroll } from '@mantine/hooks';
 import classes from './Navbar.module.css';
 
 const NAV_LINKS = [
-  { label: 'Inicio', href: '#' },
+  { label: 'Inicio', href: '/' },
   { label: 'Institucional', href: '#institucional' },
   { label: 'Niveles', href: '#niveles' },
-  { label: 'Noticias', href: '#noticias' },
+  { label: 'Noticias', href: 'noticias' },
   { label: 'Contacto', href: '#contacto' },
 ];
 

@@ -9,6 +9,14 @@ export const router = createBrowserRouter([
     path: '/site',
     lazy: lazyComponent(import('./home/home-route')),
   },
+  {
+    path: 'noticias',
+    lazy: lazyComponent(import('./noticias/NoticiasRoute')),
+  },
+  {
+    path: 'noticias/:id',
+    lazy: lazyComponent(import('./noticias/NoticiaDetailRoute')),
+  },
 ]);
 
 function lazyComponent<T>(module: Promise<ModuleWithDefault<T>>) {

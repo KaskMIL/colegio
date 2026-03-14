@@ -1,0 +1,126 @@
+.hero {
+  position: relative;
+  min-height: 400px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.heroImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.heroPlaceholder {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, var(--mantine-color-brand-6) 0%, #01522c 100%);
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 140px 0 48px;
+}
+
+.tag {
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--mantine-color-brand-6);
+  padding: 4px 14px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: inline-block;
+}
+
+.title {
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.metaText {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.article {
+  background: var(--color-warm-white);
+  padding: 60px 24px 100px;
+}
+
+.prose {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-family: var(--mantine-heading-font-family);
+  color: var(--color-dark-text);
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+
+.prose p {
+  color: var(--color-warm-gray);
+  line-height: 1.8;
+  margin-bottom: 1.2em;
+  font-size: 16px;
+}
+
+.prose img {
+  max-width: 100%;
+  border-radius: var(--mantine-radius-md);
+  margin: 1.5em 0;
+}
+
+.prose ul,
+.prose ol {
+  color: var(--color-warm-gray);
+  line-height: 1.8;
+  padding-left: 1.5em;
+  margin-bottom: 1.2em;
+}
+
+.prose blockquote {
+  border-left: 3px solid var(--mantine-color-brand-6);
+  padding-left: 1em;
+  margin: 1.5em 0;
+  color: var(--color-warm-gray);
+  font-style: italic;
+}
+
+.backLink {
+  color: var(--mantine-color-brand-6);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: var(--mantine-font-size-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.25s;
+}
+
+.backLink:hover {
+  gap: 10px;
+}
+
+.divider {
+  width: 48px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--color-border);
+  margin: 40px auto;
+}
