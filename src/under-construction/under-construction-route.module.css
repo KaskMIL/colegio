@@ -57,23 +57,22 @@
   align-items: center;
   justify-content: center;
   gap: 16px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .logoImg {
-  width: 64px;
-  height: 64px;
-  border-radius: 16px;
+  width: 180;
+  height: 180px;
+  border-radius: 100%;
   object-fit: contain;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 1);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 6px;
+  /* border: 1px solid rgba(255, 255, 255, 0.12); */
+  padding: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
-  font-weight: 700;
 }
 
 .badge {

@@ -10,11 +10,8 @@ export default function UnderConstructionRoute() {
       <div className={classes.content}>
         {/* Logos */}
         <div className={classes.logos}>
-          {/* TODO: reemplazar con <img> de logos reales */}
           <img src='/assets/colegio-300x300@2x.png'className={classes.logoImg} />
-          <img src='/assets/jardin-300x300@2x.png' className={classes.logoImg} />
-          {/* <div className={classes.logoImg} style={{ fontSize: 20 }}>AV</div>
-          <div className={classes.logoImg} style={{ fontSize: 16 }}>SMA</div> */}
+          <img src='/assets/logo-jardin-nuevo.jpeg' className={classes.logoImg} />
         </div>
 
         {/* Badge "en construcción" */}
