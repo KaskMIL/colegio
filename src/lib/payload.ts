@@ -23,11 +23,7 @@ export async function fetchPayload<T>(
   }
 
   const res = await fetch(url.toString());
-
-  if (!res.ok) {
-    throw new Error(`Error fetching ${path}: ${res.status}`);
-  }
-
+  if (!res.ok) throw new Error(`Error fetching ${path}: ${res.status}`);
   return res.json();
 }
 
@@ -36,13 +32,15 @@ export async function fetchPayloadById<T>(
   id: string,
 ): Promise<T> {
   const url = new URL(`/api/${collection}/${id}`, API_URL);
-
   const res = await fetch(url.toString());
+  if (!res.ok) throw new Error(`Error fetching ${collection}/${id}: ${res.status}`);
+  return res.json();
+}
 
-  if (!res.ok) {
-    throw new Error(`Error fetching ${collection}/${id}: ${res.status}`);
-  }
-
+export async function fetchGlobal<T>(slug: string): Promise<T> {
+  const url = new URL(`/api/globals/${slug}`, API_URL);
+  const res = await fetch(url.toString());
+  if (!res.ok) throw new Error(`Error fetching global ${slug}: ${res.status}`);
   return res.json();
 }
 
@@ -51,18 +49,15 @@ export async function createPayload<T>(
   data: Record<string, unknown>,
 ): Promise<T> {
   const url = new URL(`/api/${collection}`, API_URL);
-
   const res = await fetch(url.toString(), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   });
-
   if (!res.ok) {
     const error = await res.json().catch(() => ({}));
     throw new Error(error?.errors?.[0]?.message || `Error creating ${collection}: ${res.status}`);
   }
-
   return res.json();
 }
 

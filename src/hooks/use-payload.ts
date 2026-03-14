@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 
-import { createPayload, fetchPayload, fetchPayloadById } from '../lib/payload';
+import { createPayload, fetchGlobal, fetchPayload, fetchPayloadById } from '../lib/payload';
 
 // ─── Types ───────────────────────────────────────────────
 
@@ -49,6 +49,17 @@ export interface ContactMessage {
   telefono: string;
   nivel: string;
   mensaje: string;
+}
+
+export interface InstitucionalData {
+  sectionLabel: string;
+  titleLine1: string;
+  titleLine2: string;
+  paragraph1: string;
+  paragraph2: string;
+  ctaText: string;
+  ctaLink: string;
+  image?: PayloadMedia;
 }
 
 // ─── Hooks ───────────────────────────────────────────────
@@ -101,6 +112,14 @@ export function useNoticia(id: string) {
     queryFn: () => fetchPayloadById<Noticia>('noticias', id),
     enabled: !!id,
     staleTime: 1000 * 60 * 5,
+  });
+}
+
+export function useInstitucional() {
+  return useQuery({
+    queryKey: ['global', 'institucional'],
+    queryFn: () => fetchGlobal<InstitucionalData>('institucional'),
+    staleTime: 1000 * 60 * 10,
   });
 }
 
