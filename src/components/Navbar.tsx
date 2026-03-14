@@ -32,6 +32,7 @@ export function Navbar() {
           <Group justify="space-between">
             {/* Dual logos + brand name */}
             <a href="#" className={classes.logos}>
+              
               <div className={classes.logoWrapper}>
                 <img
                   className={classes.logoImg}
