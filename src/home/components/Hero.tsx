@@ -74,7 +74,7 @@ export function Hero() {
             </FadeIn>
 
             <FadeIn delay={0.35}>
-              <Text size="lg" className={classes.description} mt="lg" lh={1.75}>
+              <Text size="lg" className={classes.description} mt="lg">
                 30 años acompañando a las familias de San Miguel. Jardín,
                 Primaria y Secundaria con la calidez y el compromiso que tu hijo
                 necesita para crecer.
