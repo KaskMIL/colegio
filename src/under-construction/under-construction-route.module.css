@@ -152,3 +152,62 @@
   text-align: center;
   z-index: 1;
 }
+
+/* ─── Tablet (hasta 1024px) ─── */
+@media (max-width: 1024px) {
+  .logoWrapper {
+    width: 200px;
+    height: 200px;
+    padding: 16px;
+  }
+
+  .logos {
+    gap: 14px;
+  }
+}
+
+/* ─── Mobile (hasta 768px) ─── */
+@media (max-width: 768px) {
+  .page {
+    padding: 32px 20px;
+  }
+
+  .logoWrapper {
+    width: 140px;
+    height: 140px;
+    padding: 12px;
+  }
+
+  .logos {
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .content {
+    max-width: 100%;
+  }
+
+  .footer {
+    position: relative;
+    bottom: auto;
+    margin-top: 32px;
+  }
+}
+
+/* ─── Mobile chico (hasta 480px) ─── */
+@media (max-width: 480px) {
+  .logoWrapper {
+    width: 110px;
+    height: 110px;
+    padding: 10px;
+  }
+
+  .logos {
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .badge {
+    padding: 6px 16px;
+  }
+}
