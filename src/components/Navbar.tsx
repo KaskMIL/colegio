@@ -7,7 +7,7 @@ const NAV_LINKS = [
   { label: 'Inicio', href: '/' },
   { label: 'Institucional', href: '#institucional' },
   { label: 'Niveles', href: '#niveles' },
-  { label: 'Noticias', href: 'noticias' },
+  { label: 'Noticias', href: '/noticias' },
   { label: 'Contacto', href: '#contacto' },
 ];
 
@@ -29,10 +29,9 @@ export function Navbar() {
         data-scrolled={scrolled || undefined}
       >
         <Container size={1120}>
-          <Group justify="space-between">
+          <Group justify="space-between" wrap="nowrap">
             {/* Dual logos + brand name */}
-            <a href="#" className={classes.logos}>
-              
+            <a href="/" className={classes.logos}>
               <div className={classes.logoWrapper}>
                 <img
                   className={classes.logoImg}
@@ -97,6 +96,24 @@ export function Navbar() {
       {/* Mobile overlay */}
       {menuOpened && (
         <Box className={classes.mobileOverlay} onClick={close}>
+          {/* Logos en el menú mobile */}
+          {/* <div className={classes.mobileLogos}>
+            <div className={classes.mobileLogoWrapper}>
+              <img
+                className={classes.logoImg}
+                src="/assets/jardin-logo-nuevo-2.png"
+                alt="Jardín La Alpina Verde"
+              />
+            </div>
+            <div className={classes.mobileLogoWrapper}>
+              <img
+                className={classes.logoImg}
+                src="/assets/colegio-300x300.png"
+                alt="Colegio San Miguel Arcángel"
+              />
+            </div>
+          </div> */}
+
           {NAV_LINKS.map((link) => (
             <a key={link.label} href={link.href} className={classes.mobileLink}>
               {link.label}

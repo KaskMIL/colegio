@@ -5,15 +5,15 @@
   right: 0;
   z-index: 1000;
   transition: all 0.35s ease;
-  padding: 16px 0;
+  padding: 12px 0;
 }
 
 .nav[data-scrolled] {
   background: rgba(250, 248, 245, 0.97);
   backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(25px);
   border-bottom: 1px solid var(--color-border);
-  padding: 10px 0;
+  padding: 8px 0;
 }
 
 /* Logo area */
@@ -28,7 +28,7 @@
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background: rgba(250, 248, 245, 0.97);
+  background: rgba(255, 255, 255, 0.95);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,6 +36,14 @@
   padding: 10px;
   box-sizing: border-box;
   overflow: hidden;
+  transition: all 0.35s ease;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.nav[data-scrolled] .logoWrapper {
+  width: 64px;
+  height: 64px;
+  padding: 3px;
 }
 
 .logoImg {
@@ -50,20 +58,20 @@
 
 .brandName {
   font-family: var(--mantine-heading-font-family);
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 700;
   transition: color 0.35s;
 }
 
 .brandSub {
-  font-size: 14px;
+  font-size: 12px;
   transition: color 0.35s;
 }
 
 /* Links */
 .desktopLinks {
   display: flex;
-  gap: 16px;
+  gap: 20px;
   align-items: center;
 }
 
@@ -73,6 +81,7 @@
   text-decoration: none;
   transition: color 0.25s;
   padding: 4px 0;
+  white-space: nowrap;
 }
 
 .link:hover {
@@ -82,34 +91,77 @@
 .ctaBtn {
   font-size: var(--mantine-font-size-xs);
   font-weight: 600;
+  white-space: nowrap;
 }
 
-/* Mobile */
+/* Mobile burger */
 .burger {
   display: none;
 }
 
+/* Mobile overlay */
 .mobileOverlay {
   position: fixed;
   inset: 0;
   z-index: 999;
-  background: rgba(250, 248, 245, 0.98);
+  background: rgba(250, 248, 245, 0.7);
   backdrop-filter: blur(20px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 28px;
+  gap: 24px;
+  padding: 24px;
+}
+
+.mobileLogoWrapper {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  box-sizing: border-box;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.mobileLogos {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 8px;
 }
 
 .mobileLink {
   font-family: var(--mantine-heading-font-family);
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 700;
   color: var(--color-dark-text);
   text-decoration: none;
 }
 
+/* ─── Tablet (hasta 1024px) ─── */
+@media (max-width: 1024px) {
+  .desktopLinks {
+    gap: 14px;
+  }
+
+  .link {
+    font-size: 13px;
+  }
+
+  .brandName {
+    font-size: 13px;
+  }
+
+  .brandSub {
+    font-size: 11px;
+  }
+}
+
+/* ─── Mobile (hasta 768px) ─── */
 @media (max-width: 768px) {
   .desktopLinks {
     display: none;
@@ -117,5 +169,46 @@
 
   .burger {
     display: block;
+  }
+
+  .brandName {
+    font-size: 12px;
+    max-width: 160px;
+  }
+
+  .brandSub {
+    font-size: 10px;
+  }
+
+  .logoWrapper {
+    width: 64px;
+    height: 64px;
+    padding: 3px;
+  }
+
+  .nav[data-scrolled] .logoWrapper {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* ─── Mobile chico (hasta 480px) ─── */
+@media (max-width: 480px) {
+  .logos {
+    gap: 6px;
+  }
+
+  .brandText {
+    display: none;
+  }
+
+  .logoWrapper {
+    width: 64px;
+    height: 64px;
+    padding: 3px;
+  }
+
+  .mobileLink {
+    font-size: 20px;
   }
 }
