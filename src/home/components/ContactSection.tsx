@@ -45,10 +45,15 @@ export function ContactSection() {
     },
     validate: {
       nombre: (v) => (v.trim().length < 2 ? 'Ingresá tu nombre' : null),
-      email: (v) => (/^\S+@\S+\.\S+$/.test(v) ? null : 'Ingresá un email válido'),
-      telefono: (v) => (v.trim().length < 6 ? 'Ingresá un teléfono de contacto' : null),
+      email: (v) =>
+        /^\S+@\S+\.\S+$/.test(v) ? null : 'Ingresá un email válido',
+      telefono: (v) =>
+        v.trim().length < 6 ? 'Ingresá un teléfono de contacto' : null,
       nivel: (v) => (v ? null : 'Seleccioná un nivel'),
-      mensaje: (v) => (v.trim().length < 10 ? 'Contanos un poco más (mínimo 10 caracteres)' : null),
+      mensaje: (v) =>
+        v.trim().length < 10
+          ? 'Contanos un poco más (mínimo 10 caracteres)'
+          : null,
     },
   });
 
@@ -62,7 +67,13 @@ export function ContactSection() {
   };
 
   return (
-    <Box component="section" id="contacto" className={classes.section} py={100} px="md">
+    <Box
+      component="section"
+      id="contacto"
+      className={classes.section}
+      py={100}
+      px="md"
+    >
       <Container size={1120}>
         <FadeIn>
           <Box mb={48}>
@@ -80,7 +91,9 @@ export function ContactSection() {
               {submitContact.isSuccess ? (
                 <div className={classes.successMessage}>
                   <div className={classes.successIcon}>✅</div>
-                  <Title order={3} mb="xs">¡Mensaje enviado!</Title>
+                  <Title order={3} mb="xs">
+                    ¡Mensaje enviado!
+                  </Title>
                   <Text c="var(--color-warm-gray)" mb="lg">
                     Nos vamos a comunicar con vos a la brevedad.
                   </Text>
@@ -93,8 +106,8 @@ export function ContactSection() {
                   <Stack gap="md">
                     {submitContact.isError && (
                       <Alert color="red" title="Error al enviar">
-                        Hubo un problema enviando tu mensaje. Por favor intentá de nuevo o
-                        contactanos por teléfono al 4455-5400.
+                        Hubo un problema enviando tu mensaje. Por favor intentá
+                        de nuevo o contactanos por teléfono al 4455-5400.
                       </Alert>
                     )}
 
@@ -125,7 +138,10 @@ export function ContactSection() {
                       placeholder="Seleccioná un nivel"
                       withAsterisk
                       data={[
-                        { value: 'jardin', label: 'Jardín de Infantes (La Alpina Verde)' },
+                        {
+                          value: 'jardin',
+                          label: 'Jardín de Infantes (La Alpina Verde)',
+                        },
                         { value: 'primaria', label: 'Nivel Primario' },
                         { value: 'secundaria', label: 'Nivel Secundario' },
                         { value: 'varios', label: 'Más de un nivel' },
@@ -163,22 +179,36 @@ export function ContactSection() {
           <FadeIn delay={0.2} direction="left">
             <div className={classes.mapWrapper}>
               <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.9577395904325!2d-58.74064122450159!3d-34.57993585624219!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bc961ff092702d%3A0xc1b22c22b587702e!2sSan%20Miguel%20Arcangel%20Colegio!5e0!3m2!1ses!2sar!4v1773607274790!5m2!1ses!2sar"
                 className={classes.mapIframe}
-                src={MAPS_EMBED_URL}
+                title="Ubicación del Colegio San Miguel Arcángel"
+                width="600"
+                height="450"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Ubicación del Colegio San Miguel Arcángel"
-                allowFullScreen
-              />
+              ></iframe>
               <div className={classes.mapInfo}>
-                <Text fw={600} mb={4}>Colegio San Miguel Arcángel</Text>
-                <Text fz="sm" c="var(--color-warm-gray)" mb={4}>Jardín de Infantes La Alpina Verde</Text>
-                <Text fz="sm" c="var(--color-warm-gray)" mb="xs">San José 5396, San Miguel, Buenos Aires</Text>
+                <Text fw={600} mb={4}>
+                  Colegio San Miguel Arcángel
+                </Text>
+                <Text fz="sm" c="var(--color-warm-gray)" mb={4}>
+                  Jardín de Infantes La Alpina Verde
+                </Text>
+                <Text fz="sm" c="var(--color-warm-gray)" mb="xs">
+                  San José 5396, San Miguel, Buenos Aires
+                </Text>
                 <Group gap="lg">
-                  <a href={GOOGLE_MAPS_LINK} target="_blank" rel="noopener noreferrer" className={classes.mapLink}>
+                  <a
+                    href={GOOGLE_MAPS_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={classes.mapLink}
+                  >
                     Cómo llegar →
                   </a>
-                  <a href="tel:+541144555400" className={classes.mapLink}>📞 4455-5400</a>
+                  <a href="tel:+541144555400" className={classes.mapLink}>
+                    📞 4455-5400
+                  </a>
                 </Group>
               </div>
             </div>
