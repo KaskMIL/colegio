@@ -173,7 +173,7 @@
 
   .brandName {
     font-size: 12px;
-    max-width: 160px;
+    max-width: 300px;
   }
 
   .brandSub {
@@ -187,8 +187,8 @@
   }
 
   .nav[data-scrolled] .logoWrapper {
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
   }
 }
 
